@@ -1,5 +1,13 @@
 This application is designed to manage advertisements and advertisers, providing a seamless interface to handle both subscriber and company-based ads. The application includes both a backend API built with .NET Core and a frontend interface using React.
 
+## Class Diagram, Adsystem
+![Screenshot](./AdSystem/UML/adsystem-class-diagram.png)
+
+## Class Diagram, Subscriber System
+![Screenshot](./SubscriberSystem/UML/subscribersystem-class-diagram.png)
+
+
+
 ## Features
 
     Advertiser Management: Create, read, update, and delete advertisers.
