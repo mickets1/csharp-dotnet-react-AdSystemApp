@@ -1,0 +1,44 @@
+@startuml
+
+' Define the Subscriber model
+class Subscriber {
+    +int SubscriptionNumber
+    +string Name
+    +string Address
+    +string PhoneNumber
+    +string PostalCode
+    +string City
+}
+
+' Define the SubscriberDbContext
+class SubscriberDbContext {
+    +DbSet<Subscriber> Subscribers
+    +OnModelCreating(modelBuilder: ModelBuilder)
+}
+
+' Define the DataAccessLayer
+class DataAccessLayer {
+    -SubscriberDbContext _context
+    +GetSubscribersAsync() : Task<IEnumerable<Subscriber>>
+    +GetSubscriberByIdAsync(id: int) : Task<Subscriber>
+    +AddSubscriberAsync(subscriber: Subscriber) : Task
+    +UpdateSubscriberAsync(subscriber: Subscriber) : Task
+    +DeleteSubscriberAsync(id: int) : Task
+}
+
+' Define the SubscriberController
+class SubscriberController {
+    -DataAccessLayer _dataAccessLayer
+    +GetSubscribers() : Task<ActionResult<IEnumerable<Subscriber>>>
+    +GetSubscriber(id: int) : Task<ActionResult<Subscriber>>
+    +AddSubscriber(subscriber: Subscriber) : Task<ActionResult>
+    +UpdateSubscriber(subscriptionNumber: int, updatedSubscriber: Subscriber) : Task<IActionResult>
+    +DeleteSubscriber(id: int) : Task<IActionResult>
+}
+
+' Relationships
+SubscriberDbContext --> Subscriber
+DataAccessLayer --> SubscriberDbContext
+SubscriberController --> DataAccessLayer
+
+@enduml

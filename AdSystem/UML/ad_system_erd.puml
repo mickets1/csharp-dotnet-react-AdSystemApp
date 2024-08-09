@@ -1,0 +1,29 @@
+@startuml
+
+entity "Advertiser" as advertiser {
+    +advertiser_id : integer [PK]
+    advertiser_name : text
+    advertiser_organizationNumber : text
+    advertiser_phonenumber : text
+    advertiser_address : text
+    advertiser_postalcode : text
+    advertiser_city : text
+    advertiser_billingaddress : text
+    advertiser_billingpostalcode : text
+    advertiser_billingcity : text
+    advertiser_issubscriber : boolean
+}
+
+entity "Ad" as ad {
+    +ad_id : integer [PK]
+    ad_itemprice : numeric
+    ad_content : text
+    ad_title : text
+    ad_adprice : numeric
+    IsSubscriber : boolean
+    AdvertiserId : integer [FK]
+}
+
+ad -- advertiser : "AdvertiserId"
+
+@enduml

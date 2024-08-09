@@ -1,0 +1,123 @@
+@startuml
+
+package "AdSystem.Controllers" {
+    class AdsController {
+        +PostSubscriberAd(request: SubscriberAdRequest): IActionResult
+        +PostCompanyAd(request: CompanyAdRequest): IActionResult
+        +GetAds(): Task<ActionResult<IEnumerable<object>>>
+        +GetAd(id: int): Task<ActionResult<Ad>>
+        +UpdateAd(id: int, ad: Ad): IActionResult
+        +DeleteAd(id: int): IActionResult
+    }
+    
+    class AdvertiserController {
+        +GetAdvertisers(): Task<ActionResult<IEnumerable<Advertiser>>>
+        +GetAdvertiser(id: int): Task<ActionResult<Advertiser>>
+        +AddAdvertiser(advertiser: Advertiser): Task<ActionResult>
+        +UpdateAdvertiser(id: int, advertiser: Advertiser): IActionResult
+        +DeleteAdvertiser(id: int): IActionResult
+    }
+}
+
+package "AdSystem.Models" {
+    class Ad {
+        +Id: int
+        +ItemPrice: decimal
+        +Content: string
+        +Title: string
+        +AdPrice: decimal
+        +IsSubscriber: bool
+        +AdvertiserId: int
+    }
+
+    class Advertiser {
+        +Id: int
+        +Name: string
+        +OrganizationNumber: string
+        +PhoneNumber: string
+        +Address: string
+        +PostalCode: string
+        +City: string
+        +BillingAddress: string
+        +BillingPostalCode: string
+        +BillingCity: string
+        +IsSubscriber: bool
+        +Ads: ICollection<Ad>
+    }
+}
+
+package "AdSystem.DTO" {
+    class CompanyAdRequest {
+        +Title: string
+        +Content: string
+        +ItemPrice: decimal
+        +Name: string
+        +OrganizationNumber: string
+        +PhoneNumber: string
+        +Address: string
+        +PostalCode: string
+        +City: string
+        +BillingAddress: string
+        +BillingPostalCode: string
+        +BillingCity: string
+    }
+
+    class SubscriberAdRequest {
+        +SubscriptionNumber: int
+        +Title: string
+        +Content: string
+        +ItemPrice: decimal
+    }
+
+        class SubscriberDto {
+        +Name: string
+        +Address: string
+        +PostalCode: string
+        +City: string
+        +PhoneNumber: string
+        +SubscriptionNumber: int
+    }
+}
+
+package "AdSystem.Services" {
+    class ApiService {
+        +GetSubscriberAsync(subscriptionNumber: int): Task<SubscriberDto>
+        +AddSubscriberAsync(subscriber: SubscriberDto): Task<SubscriberDto>
+    }
+}
+
+package "AdSystem.Data" {
+    class AdDbContext {
+        +Ads: DbSet<Ad>
+        +Advertisers: DbSet<Advertiser>
+        +OnModelCreating(modelBuilder: ModelBuilder): void
+    }
+
+    class DataAccessLayer {
+        +GetAdvertisersAsync(): Task<IEnumerable<Advertiser>>
+        +GetAdvertiserByIdAsync(id: int): Task<Advertiser>
+        +AddAdvertiserAsync(advertiser: Advertiser): Task
+        +UpdateAdvertiserAsync(advertiser: Advertiser): Task
+        +DeleteAdvertiserAsync(id: int): Task
+        +DeleteAdAsync(id: int): Task
+        +UpdateAdAsync(ad: Ad): Task
+    }
+
+    class AdDatabaseInitializer {
+        +Initialize(context: AdDbContext): void
+    }
+}
+
+' Relationships
+AdsController -- ApiService : uses
+AdsController -- AdDbContext : uses
+AdvertiserController -- DataAccessLayer : uses
+DataAccessLayer -- AdDbContext : uses
+AdDbContext -- Ad : has
+AdDbContext -- Advertiser : has
+Advertiser -- Ad : has
+ApiService -- SubscriberDto : uses
+CompanyAdRequest -- Ad : creates
+SubscriberAdRequest -- Ad : creates
+
+@enduml

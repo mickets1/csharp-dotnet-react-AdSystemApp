@@ -1,0 +1,12 @@
+@startuml
+
+entity "Subscriber" as subscriber {
+    +subscription_number : integer [PK]
+    name : text
+    address : text
+    PhoneNumber : text
+    postal_code : text
+    city : text
+}
+
+@enduml

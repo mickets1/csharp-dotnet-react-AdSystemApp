@@ -1,0 +1,186 @@
+/* styles.css */
+
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* AddAdvertisement component */
+.add-advertisement-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.radio-buttons {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.radio-buttons label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.company-fields {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* AdList component */
+.ad-list {
+    margin-top: 20px;
+}
+
+.ad-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 10px;
+}
+
+.ad-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.advertiser-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.ad-price {
+    font-style: italic;
+    color: #666;
+}
+
+.ad-rubrik,
+.ad-innehall,
+.ad-type {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* AdvertiserList component */
+.advertiser-list {
+    margin-top: 20px;
+}
+
+.advertiser-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 10px;
+}
+
+.advertiser-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.advertiser-type {
+    font-style: italic;
+    color: #666;
+}
+
+.advertiser-address {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* SubscriberList component */
+.subscriber-list {
+    margin-top: 20px;
+}
+
+.subscriber-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 10px;
+}
+
+.subscriber-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
+
+.subscriber-address {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
